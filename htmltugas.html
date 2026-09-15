@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nama Anda — Portofolio</title>
+<title>Pranata Junjung Megasaputra — Portofolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -63,43 +63,34 @@
     padding-top:16px; padding-bottom:16px;
   }
   nav .brand{font-family:'Sora',sans-serif; font-weight:700; font-size:1.05rem;}
-  nav .nav-right{display:flex; align-items:center; gap:26px;}
-  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
-  nav a{text-decoration:none; color:var(--ink); font-size:.9rem; font-weight:500;}
+  nav .nav-right{display:flex; align-items:center; gap:22px;}
+  nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;}
+  nav a{text-decoration:none; color:var(--ink); font-size:.88rem; font-weight:500;}
   nav a:hover{color:var(--blue);}
   .theme-toggle{
     display:flex; align-items:center; justify-content:center;
     width:36px; height:36px; border-radius:50%;
     border:1px solid var(--line); background:var(--panel);
-    cursor:pointer; color:var(--ink);
+    cursor:pointer; color:var(--ink); flex-shrink:0;
   }
   .theme-toggle svg{width:18px; height:18px;}
   .theme-toggle .icon-moon{display:none;}
   html[data-theme="dark"] .theme-toggle .icon-sun{display:none;}
   html[data-theme="dark"] .theme-toggle .icon-moon{display:block;}
 
-  header.hero{ padding:80px 0 72px; border-bottom:1px solid var(--line); }
-  .hero .wrap{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:52px;
-    align-items:center;
-  }
+  /* HERO */
+  header.hero{ padding:80px 0 72px; border-bottom:1px solid var(--line); text-align:center; }
   .profile-photo{
-    width:88px; height:88px; border-radius:50%;
+    width:104px; height:104px; border-radius:50%;
     object-fit:cover; border:3px solid var(--blue-soft);
-    margin-bottom:22px; display:block;
+    margin-bottom:24px; display:block;
     background:var(--blue-soft);
+    margin-left:auto; margin-right:auto;
   }
-  .hero h1{font-size:2.7rem; line-height:1.1; color:var(--blue-deep);}
+  .hero h1{font-size:2.6rem; line-height:1.15; color:var(--blue-deep);}
   .hero p.lede{
-    max-width:44ch; color:var(--muted); font-size:1.05rem; margin-top:16px;
+    max-width:52ch; color:var(--muted); font-size:1.05rem; margin:16px auto 0;
   }
-  .hero .video-box{
-    background:#0b1220; border-radius:16px; overflow:hidden;
-    aspect-ratio:16/9; box-shadow:var(--shadow);
-  }
-  .hero .video-box video{width:100%; height:100%; display:block; object-fit:cover;}
 
   section{padding:60px 0; border-bottom:1px solid var(--line);}
   section:last-of-type{border-bottom:none;}
@@ -107,10 +98,8 @@
   .section-head h2{font-size:1.5rem;}
   .section-head p{color:var(--muted); margin:6px 0 0; font-size:.95rem;}
 
-
   .about-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:44px;}
   .about-grid p{color:var(--ink); font-size:.98rem;}
-
 
   .skill-list{display:flex; flex-direction:column; gap:18px;}
   .skill-row .skill-top{
@@ -127,6 +116,57 @@
     width:0%;
     transition:width 1s ease;
   }
+
+
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;
+  }
+  .gallery-item{
+    background:var(--panel); border-radius:14px; overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .gallery-item .thumb{
+    width:100%; aspect-ratio:4/3; object-fit:cover; display:block;
+    background:var(--blue-soft);
+    cursor:zoom-in;
+    transition:transform .2s ease, filter .2s ease;
+  }
+  .gallery-item .thumb:hover{ transform:scale(1.03); filter:brightness(.95); }
+  .gallery-item .caption{ padding:14px 16px; }
+  .gallery-item .caption h3{font-size:.95rem; margin-bottom:2px;}
+  .gallery-item .caption p{font-size:.82rem; color:var(--muted); margin:0;}
+
+
+  .lightbox{
+    position:fixed; inset:0; background:rgba(5,8,15,0.92);
+    display:none; align-items:center; justify-content:center;
+    z-index:1000; padding:32px; cursor:zoom-out;
+  }
+  .lightbox.active{ display:flex; }
+  .lightbox img{
+    max-width:92vw; max-height:86vh; border-radius:10px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    cursor:default;
+  }
+  .lightbox-close{
+    position:absolute; top:22px; right:28px;
+    width:40px; height:40px; border-radius:50%;
+    background:rgba(255,255,255,0.1); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem; line-height:1; cursor:pointer;
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .lightbox-caption{
+    position:absolute; bottom:26px; left:0; right:0;
+    text-align:center; color:#d6dcea; font-size:.9rem;
+  }
+
+  .video-box{
+    background:#0b1220; border-radius:16px; overflow:hidden;
+    aspect-ratio:16/9; box-shadow:var(--shadow);
+    max-width:640px; margin:0 auto;
+  }
+  .video-box video{width:100%; height:100%; display:block; object-fit:cover;}
 
   .media-block{margin-bottom:40px;}
   .media-block h3{font-size:1.05rem; margin-bottom:4px; font-weight:600;}
@@ -145,7 +185,6 @@
     position:absolute; top:0; left:0; width:100%; height:100%; border:0;
   }
 
-  /* CV */
   .cv-frame{
     border-radius:14px; overflow:hidden; background:var(--panel); box-shadow:var(--shadow);
   }
@@ -156,7 +195,6 @@
   }
   .cv-download:hover{text-decoration:underline;}
 
-  /* CONTACT */
   .contact-grid{
     display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
   }
@@ -167,9 +205,7 @@
     box-shadow:var(--shadow);
     transition:transform .15s ease, box-shadow .15s ease;
   }
-  .contact-card:hover{
-    transform:translateY(-3px);
-  }
+  .contact-card:hover{ transform:translateY(-3px); }
   .contact-card .icon{width:22px; height:22px; color:var(--blue);}
   .contact-card .label{font-size:.78rem; color:var(--muted);}
   .contact-card .value{font-family:'Sora',sans-serif; font-size:1rem; font-weight:600;}
@@ -179,11 +215,14 @@
   }
 
   @media (max-width:760px){
-    .hero .wrap{grid-template-columns:1fr;}
     .about-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
     .contact-grid{grid-template-columns:1fr;}
-    nav ul{gap:16px;}
+    nav ul{gap:14px;}
     .hero h1{font-size:2.1rem;}
+  }
+  @media (max-width:480px){
+    .gallery-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -195,6 +234,8 @@
     <div class="nav-right">
       <ul>
         <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#video">Video</a></li>
         <li><a href="#media">Media</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#kontak">Kontak</a></li>
@@ -209,21 +250,11 @@
 
 <header class="hero" id="atas">
   <div class="wrap">
-    <div>
-   
-      <img class="profile-photo" src="bg putih.png" alt="Foto Nama Anda">
-      <h1>Halo, saya Pranata Junjung Megasaputra.</h1>
-      <p class="lede">
-        Informatics Engineering Student - Electronic Enggineering Polytechnic Institute Of Surabaya
-      </p>
-    </div>
-    <div class="video-box">
-      
-      <video controls poster="" preload="metadata">
-        <source src="video-perkenalan.mp4" type="video/mp4">
-        Browser Anda tidak mendukung tag video.
-      </video>
-    </div>
+    <img class="profile-photo" src="bg putih.png" alt="Foto Pranata Junjung Megasaputra">
+    <h1>Halo, saya Pranata Junjung Megasaputra.</h1>
+    <p class="lede">
+      Informatics Engineering Student - Electronics Engineering Polytechnic Institute Of Surabaya
+    </p>
   </div>
 </header>
 
@@ -232,11 +263,10 @@
     <div class="section-head"><h2>Tentang Saya</h2></div>
     <div class="about-grid">
       <p>
-        Hallo Semua perkenalkan nama saya <b>Pranata Junjung Megasaputra</b>. Saya merupakan pribadi  yang memilki rasa ingin tahu yang tinggi dan juga suka mempelajari hal-hal baru, terutama dibidang teknologi dan komputer. Saya lebih cenderung terbiasa belajar secara mandiri dan menikmati proses  memahami bagaimana suatu sistem itu bisa bekerja. Saya sangat yakin bawa perkembangan diri bisa dicapai melalui konsisten dalam belajar dan mencoba hal-hal baru.
+        Hallo Semua perkenalkan nama saya <b>Pranata Junjung Megasaputra</b>. Saya merupakan pribadi yang memilki rasa ingin tahu yang tinggi dan juga suka mempelajari hal-hal baru, terutama dibidang teknologi dan komputer. Saya lebih cenderung terbiasa belajar secara mandiri dan menikmati proses memahami bagaimana suatu sistem itu bisa bekerja. Saya sangat yakin bawa perkembangan diri bisa dicapai melalui konsisten dalam belajar dan mencoba hal-hal baru.
       </p>
       <div>
         <h3 style="font-size:.95rem; margin-bottom:16px;">Keahlian</h3>
-
         <div class="skill-list">
           <div class="skill-row">
             <div class="skill-top">
@@ -275,6 +305,87 @@
   </div>
 </section>
 
+<section id="galeri">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Galeri Desain</h2>
+      <p>Beberapa hasil desain menggunakan Adobe Illustrator & Photoshop. Klik gambar untuk melihat ukuran penuh.</p>
+    </div>
+  
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img class="thumb" src="sma awards 2024 thumbnail.jpg" alt="Desain 1" data-caption="Gurih - SMA Awards 2024">
+        <div class="caption">
+          <h3>Gurih - SMA Awards 2024</h3>
+          <p>Thumbnail Film Pendek SMA Awards 2024</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="thumb" src="maxresdefault.jpg" alt="Desain 2" data-caption="Interpretasi - SMA Awards 2025">
+        <div class="caption">
+          <h3>Interpretasi - SMA Awards 2025</h3>
+          <p>Thumbnail Film Pendek SMA Awards 2025</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="thumb" src="FEED FUTSAL no sponsor sama katok-01.png" alt="Desain 3" data-caption="Jersey Futsal Songo 24/25">
+        <div class="caption">
+          <h3>Jersey Futsal Songo 24/25</h3>
+          <p>Desain Jersey Futsal SMAN 9 SURABAYA</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="thumb" src="new r-01.jpg" alt="Desain 4" data-caption="Rompi Jurnalix">
+        <div class="caption">
+          <h3>Rompi Jurnalix</h3>
+          <p>Desain Rompi Jurnalix SMAN 9 SURABAYA</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="thumb" src="maxresdefault (1).jpg" alt="Desain 5" data-caption="Aeternav - Short Movie">
+        <div class="caption">
+          <h3>Aeternav - Short Movie</h3>
+          <p>Video Angkatan 26 SMAN 9 SURABAYA.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img class="thumb" src="Rekor Muri Bendera Terpanjang❓😱Iyo rek, kalian ga salah baca, hari ini 17 Agustus 2025 kota Sur.jpg" alt="Desain 6" data-caption="Feed IG 17 Agustus 2025">
+        <div class="caption">
+          <h3>Feed IG 17 Agustus 2025</h3>
+          <p>Feed Instagram </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<section id="video">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Video Hobi :</h2>
+      <p>Suara aktif — gunakan kontrol volume pada pemutar untuk mengatur.</p>
+    </div>
+    <div class="video-box">
+      <video controls preload="metadata">
+        <source src="0510 (1).mp4" type="video/mp4">
+        Browser Anda tidak mendukung tag video.
+      </video>
+    </div>
+  </div>
+</section>
+
 <section id="media">
   <div class="wrap">
     <div class="section-head"><h2>Media</h2></div>
@@ -283,7 +394,6 @@
       <h3>Salah satu musik favorit saya :</h3>
       <p class="desc"><b>The Groove - Khayalan</b>.</p>
       <div class="audio-card">
-  
         <audio controls>
           <source src="YTDown.com_YouTube_The-Groove-Khayalan-Lyric-Video_Media_1q3x2wyjqo8_009_128k - Copy.mp3" type="audio/mpeg">
           Browser Anda tidak mendukung tag audio.
@@ -295,7 +405,6 @@
       <h3>Video Terkait Minat / Keahlian Saya</h3>
       <p class="desc">Video YouTube yang relevan dengan bidang yang saya tekuni :</p>
       <div class="yt-frame">
-     
         <iframe src="https://www.youtube.com/embed/dX9CGRZwD-w?si=R5j6o0hVEzdhBWZk"
                 title="Video YouTube relevan"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -351,7 +460,6 @@
 </footer>
 
 <script>
-
   window.addEventListener('load', () => {
     document.querySelectorAll('.skill-fill').forEach(el => {
       const w = el.style.width;
@@ -359,7 +467,6 @@
       requestAnimationFrame(() => { el.style.width = w; });
     });
   });
-
 
   const root = document.documentElement;
   const toggleBtn = document.getElementById('themeToggle');
@@ -377,6 +484,34 @@
       root.setAttribute('data-theme', 'dark');
       localStorage.setItem('portfolio-theme', 'dark');
     }
+  });
+
+ 
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.gallery-item .thumb').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.getAttribute('src');
+      lightboxImg.alt = img.getAttribute('alt') || '';
+      lightboxCaption.textContent = img.getAttribute('data-caption') || '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
   });
 </script>
 
